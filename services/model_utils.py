@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 from catboost import CatBoostClassifier, Pool
 
 # Global variable that stores trained model instance
-MODEL = joblib.load(r"C:\Users\HP\Downloads\random.pkl")
+# MODEL = joblib.load(r"C:\Users\HP\Downloads\random.pkl")
 
 # # Dictionary that converts frontend feature names to names understood by model
 # display_to_model = {'age':'Age', 'sex':'Sex', 'cpt':'ChestPainType', 'bp':'RestingBP', 
@@ -15,15 +15,10 @@ MODEL = joblib.load(r"C:\Users\HP\Downloads\random.pkl")
 
 def predict_hf(data:pd.DataFrame):
 
-    pipe = joblib.load(r"C:\Users\HP\Downloads\pipe.joblib")
-
-    x = pipe.transform(data)
-
-    xt = MODEL.predict(x)
     model = CatBoostClassifier()
 
-    model.load_model(r"C:\Users\HP\Downloads\thresholdstroke_pred")
-    return [model.predict_proba(data), MODEL.predict_proba(x)]
+    model.load_model("thresholdstroke_pred")
+    return model.predict_proba(data)
 
 
 # def get_shap_df(data:pd.DataFrame):
