@@ -44,7 +44,7 @@ def predict_hf(data:pd.DataFrame):
 def get_shap_df(data:pd.DataFrame):
     model = CatBoostClassifier()
 
-    model.load_model(r"C:\Users\HP\Downloads\thresholdstroke_pred")
+    model.load_model("thresholdstroke_pred")
 
     data_pool = Pool(data, cat_features=model.get_cat_feature_indices())
 
